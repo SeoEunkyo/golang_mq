@@ -1,8 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/SeoEunkyo/golang_mq/rest"
+)
 
 func main (){
 
-	fmt.Println("inti project")
+	rest.ServeAPI("127.0.0.1:8888")
+	fmt.Println("Rest API Server Start")
 }
