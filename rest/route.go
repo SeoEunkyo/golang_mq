@@ -5,12 +5,15 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/SeoEunkyo/golang_mq/lib/msgqueue"
 	"github.com/gorilla/mux"
 )
 
-func ServeAPI(listenAddr string){
+func ServeAPI(listenAddr string,  eventEmitter msgqueue.EventEmitter ){
+	
+	
 	r := mux.NewRouter()
-	r.Methods("get").Path("/").Handler(&IndexHandler{})
+	r.Methods("get").Path("/").Handler(&IndexHandler{eventEmitter})
 	r.Methods("get").Path("/event/{eventID}/booking").Handler(&CreateBookingHandler{})
 
 	srv := http.Server{
